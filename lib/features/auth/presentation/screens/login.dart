@@ -1,10 +1,18 @@
 import 'package:chef_app/core/local/app_localization.dart';
 import 'package:chef_app/core/utils/app_assets.dart';
+import 'package:chef_app/core/utils/app_color.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
+import 'package:chef_app/core/utils/commens.dart';
 import 'package:chef_app/core/widgets/custom_button.dart';
 import 'package:chef_app/core/widgets/custom_image.dart';
+import 'package:chef_app/core/widgets/custom_loading_indicator.dart';
+import 'package:chef_app/features/auth/presentation/auth_cubit/login_cubit.dart';
+import 'package:chef_app/features/auth/presentation/auth_cubit/login_cubit.dart';
+import 'package:chef_app/features/auth/presentation/auth_cubit/login_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
 
@@ -28,7 +36,10 @@ class LoginScreen extends StatelessWidget {
                   Center(
                     child: Text(
                       AppStrings.welcomeBack.tr(context),
-                      style: Theme.of(context).textTheme.displayLarge,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .displayLarge,
                     ),
                   ),
                 ],
@@ -38,48 +49,79 @@ class LoginScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  children: [
-                    //email
-                    CustomTextFormField(
-                      controller: TextEditingController(),
-                      hint: AppStrings.email.tr(context),
-                    ),
-                    SizedBox(
-                      height: 32.h,
-                    ),
-                    CustomTextFormField(
-                      controller: TextEditingController(),
-                      hint: AppStrings.password.tr(context),
-                      isPassword: true,
-                      icon: Icons.remove_red_eye,
-                      suffixIconOnPressed: () {},
-                      validator: (data) {
-                        if (data!.length < 6 || data.isEmpty) {
-                          return AppStrings.pleaseEnterValidPassword
-                              .tr(context);
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 24.h,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          AppStrings.forgetPassword.tr(context),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 64.h,
-                    ),
-                    CustomButton(
-                      onPressed: () {},
-                      text: AppStrings.signIn.tr(context),
-                    ),
-                  ],
+                child: BlocConsumer<LoginCubit, LoginState>(
+                  listener: (context, state) {
+                    if(state is LoginSuccessState){
+                      showToast(message: AppStrings.loginSucessfully.tr(context),
+                          state: ToastStates.success);
+                    }
+                    if(state is LoginErrorState){
+                      showToast(message: state.message,
+                          state: ToastStates.error);
+                    }
+                  },
+                  builder: (context, state) {
+                    return Form(
+                      key: BlocProvider.of<LoginCubit>(context).loginKey,
+                      child: Column(
+                        children: [
+                          //email
+                          CustomTextFormField(
+                            validator: (data) {
+                              if (data!.isEmpty ||! data.contains('@gmail.com')) {
+                                return AppStrings.pleaseEnterValidEmail
+                                    .tr(context);
+                              }
+                              return null;
+                            },
+                            controller: BlocProvider.of<LoginCubit>(context).emailController,
+                            hint: AppStrings.email.tr(context),
+                          ),
+                          SizedBox(
+                            height: 32.h,
+                          ),
+                          //password
+                          CustomTextFormField(
+                            controller: BlocProvider.of<LoginCubit>(context).passwordController,
+                            hint: AppStrings.password.tr(context),
+                            isPassword: BlocProvider.of<LoginCubit>(context).isLoginPasswordShown,
+                            icon: BlocProvider.of<LoginCubit>(context).suffixIcon,
+                            suffixIconOnPressed: () {
+                              BlocProvider.of<LoginCubit>(context).changeLoginPasswordSuffixIcon();
+                            },
+                            validator: (data) {
+                              if (data!.length < 6 || data.isEmpty) {
+                                return AppStrings.pleaseEnterValidPassword
+                                    .tr(context);
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(
+                            height: 24.h,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                AppStrings.forgetPassword.tr(context),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 64.h,
+                          ),
+                          state is LoginLoadingState?CustomLoadingIndicator(): CustomButton(
+                            onPressed: () {
+                              if(BlocProvider.of<LoginCubit>(context).loginKey.currentState!.validate()){
+                                BlocProvider.of<LoginCubit>(context).login();
+                              }
+                            },
+                            text: AppStrings.signIn.tr(context),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
