@@ -1,7 +1,6 @@
 import 'package:chef_app/core/utils/app_color.dart';
 import 'package:chef_app/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 ThemeData getAppTheme() {
   return ThemeData(
@@ -32,7 +31,7 @@ ThemeData getAppTheme() {
     inputDecorationTheme: InputDecorationTheme(
       //enabled border
       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-      //fouced border
+      //focused border
       focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       //hint
       hintStyle: boldStyle(color: AppColors.grey, fontSize: 16),
