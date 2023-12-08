@@ -11,15 +11,26 @@ class AuthRepo {
     required String email,
     required String password,
   }) async {
-    try{
-      final response= await sl<ApiConsumer>().post(EndPoint.chefSignIn, data: {
+    try {
+      final response = await sl<ApiConsumer>().post(EndPoint.chefSignIn, data: {
         ApiKeys.email: email,
         ApiKeys.password: password,
       });
       return Right(LoginModel.fromJson(response));
-    }on ServerException catch(error){
+    } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
     }
+  }
 
+  Future<Either<String, String>> sendCode(String email) async {
+    try {
+      final response = await sl<ApiConsumer>().post(EndPoint.sendCode, data: {
+        ApiKeys.email: email,
+      });
+
+      return Right(response[ApiKeys.message]);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    }
   }
 }

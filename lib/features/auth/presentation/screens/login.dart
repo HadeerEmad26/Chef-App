@@ -1,4 +1,5 @@
 import 'package:chef_app/core/local/app_localization.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_assets.dart';
 import 'package:chef_app/core/utils/app_color.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
@@ -102,8 +103,12 @@ class LoginScreen extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Text(
-                                AppStrings.forgetPassword.tr(context),
+                              TextButton(
+                                onPressed: (){
+                                  navigate(context: context, route: Routes.sendCode);
+                                },
+                                child: Text(AppStrings.forgetPassword.tr(context),),
+
                               ),
                             ],
                           ),
