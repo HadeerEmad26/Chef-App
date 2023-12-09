@@ -102,9 +102,9 @@ class LoginScreen extends StatelessWidget {
                             children: [
                               TextButton(
                                 onPressed: () {
-                                  navigate(context: context, route: Routes.sendCode);
-                                  // navigateRepacement(
-                                  //     context: context, route: Routes.sendCode);
+                                 // navigate(context: context, route: Routes.sendCode);
+                                  navigateReplacement(
+                                      context: context, route: Routes.sendCode);
                                 },
                                 child: Text(
                                   AppStrings.forgetPassword.tr(context),

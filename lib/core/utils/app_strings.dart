@@ -5,6 +5,8 @@ class AppStrings{
   static const String welcomeBack = 'welcomeBack';
   static const String gallery = 'gallery';
   static const String camera = 'camera';
+  static const String menu = 'Menu';
+  static const String profile = 'Profile';
   static const String writeHere = 'writeHere';
   static const String signIn = 'sign_in';
   static const String signUp = 'sign_up';

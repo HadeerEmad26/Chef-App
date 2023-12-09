@@ -21,6 +21,9 @@ class SendCodeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          navigateReplacement(context: context, route: Routes.login);
+        }, icon: Icon(Icons.arrow_back),),
         title: Text(
           AppStrings.forgetPassword.tr(context),
         ),
@@ -34,7 +37,7 @@ class SendCodeScreen extends StatelessWidget {
                 //Show message
                 showToast(message: state.message, state: ToastStates.success);
                 //Navigate to change password screen
-                navigate(context: context, route: Routes.resetPassword);
+                navigateReplacement(context: context, route: Routes.resetPassword);
               }
             },
             builder: (context, state) {

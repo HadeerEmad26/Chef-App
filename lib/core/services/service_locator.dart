@@ -5,6 +5,7 @@ import 'package:chef_app/core/database/cache_helper/cache_helper.dart';
 import 'package:chef_app/features/auth/data/reposetry/auth_repo.dart';
 import 'package:chef_app/features/auth/presentation/auth_cubit/login_cubit.dart';
 import 'package:chef_app/features/auth/presentation/forget_password_cubit/forget_password_cubit.dart';
+import 'package:chef_app/features/home/cubit/home_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -15,6 +16,7 @@ void initServiceLoactor(){
   sl.registerLazySingleton(()=> GlobalCubit());
   sl.registerLazySingleton(()=> LoginCubit(sl()));
   sl.registerLazySingleton(()=> ForgetPasswordCubit(sl()));
+  sl.registerLazySingleton(()=> HomeCubit());
 
 
   //auth feature

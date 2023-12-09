@@ -3,6 +3,7 @@ import 'package:chef_app/features/auth/presentation/screens/login.dart';
 import 'package:chef_app/features/auth/presentation/screens/reset_password.dart';
 import 'package:chef_app/features/auth/presentation/screens/send_code.dart';
 import 'package:chef_app/features/auth/presentation/screens/splash_screen.dart';
+import 'package:chef_app/features/home/screens/home_screen.dart';
 import 'package:chef_app/features/menu/presentation/screens/add_meal_screen.dart';
 import 'package:chef_app/features/menu/presentation/screens/menu_home.dart';
 import 'package:chef_app/features/profile/presentation/screens/change_password.dart';
@@ -17,6 +18,7 @@ class Routes {
   static const String login = '/login';
   static const String sendCode = '/sendCode';
   static const String resetPassword = '/resetPassword';
+  static const String home = '/home';
   static const String menuHome = '/menuHome';
   static const String addMeal = '/addMeal';
   static const String profileHome = '/profileHome';
@@ -29,7 +31,7 @@ class AppRoutes {
   static MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case  Routes.intitlRoutes:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => SplashScreen());
 
       case Routes.changeLang:
         return MaterialPageRoute(builder: (_) => ChangeLanguageScreen());
@@ -50,7 +52,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => AddMealScreen());
 
       case Routes.profileHome:
-        return MaterialPageRoute(builder: (_) => ProfileHomeScreen());
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
 
       case Routes.updateProfile:
         return MaterialPageRoute(builder: (_) => UpdateProfileScreen());
@@ -60,6 +62,10 @@ class AppRoutes {
 
       case Routes.changePassword:
         return MaterialPageRoute(builder: (_) => ChangePasswordScreen());
+
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
+
 
       default:
         return MaterialPageRoute(
