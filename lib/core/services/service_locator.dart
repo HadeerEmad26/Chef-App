@@ -10,7 +10,7 @@ import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
 
-void initServiceLocator(){
+void initServiceLoactor(){
   //cubit
   sl.registerLazySingleton(()=> GlobalCubit());
   sl.registerLazySingleton(()=> LoginCubit(sl()));
@@ -18,7 +18,7 @@ void initServiceLocator(){
 
 
   //auth feature
-  sl.registerLazySingleton(() => AuthRepo());
+  sl.registerLazySingleton(() => AuthRepository());
   
   //external
   sl.registerLazySingleton(()=> CacheHelper());

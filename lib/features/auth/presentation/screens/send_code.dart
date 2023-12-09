@@ -1,6 +1,8 @@
 import 'package:chef_app/core/local/app_localization.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_assets.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
+import 'package:chef_app/core/utils/commens.dart';
 import 'package:chef_app/core/widgets/custom_image.dart';
 import 'package:chef_app/core/widgets/custom_text_form_field.dart';
 import 'package:chef_app/features/auth/presentation/forget_password_cubit/forget_password_cubit.dart';
@@ -15,8 +17,6 @@ import '../../../../core/widgets/custom_loading_indicator.dart';
 class SendCodeScreen extends StatelessWidget {
   const SendCodeScreen({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,12 @@ class SendCodeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
             listener: (context, state) {
-              // TODO: implement listener
+              if(state is SendCodeSuccess){
+                //Show message
+                showToast(message: state.message, state: ToastStates.success);
+                //Navigate to change password screen
+                navigate(context: context, route: Routes.resetPassword);
+              }
             },
             builder: (context, state) {
               return Form(
@@ -41,20 +46,40 @@ class SendCodeScreen extends StatelessWidget {
                       padding: EdgeInsets.only(top: 40.h, bottom: 24.h),
                       child: CustomImage(imagePath: AppAssets.lock),
                     ),
-                    Text(AppStrings.sendResetLinkInfo.tr(context),),
-                    SizedBox(height: 26.h,),
-                    CustomTextFormField(controller: TextEditingController(),
-                      hint: AppStrings.email.tr(context),),
-                    SizedBox(height: 26.h,),
-                    state is SendCodeLoading?CustomLoadingIndicator():CustomButton(
-                      onPressed: () {
-                        if(BlocProvider.of<ForgetPasswordCubit>(context).sendCodeKey.currentState!.validate()){
-                          BlocProvider.of<ForgetPasswordCubit>(context).sendCode();
-                        }
-                      },
-                      text: AppStrings.sendResetLink.tr(context),
+                    Text(
+                      AppStrings.sendResetLinkInfo.tr(context),
                     ),
-
+                    SizedBox(
+                      height: 26.h,
+                    ),
+                    CustomTextFormField(
+                      controller: BlocProvider.of<ForgetPasswordCubit>(context).emailController,
+                      hint: AppStrings.email.tr(context),
+                      validate: (data) {
+                        if (data!.isEmpty ||! data.contains('@gmail.com')) {
+                          return AppStrings.pleaseEnterValidEmail
+                              .tr(context);
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(
+                      height: 26.h,
+                    ),
+                    state is SendCodeLoading
+                        ? CusotmLoadingIndicator()
+                        : CustomButton(
+                            onPressed: () {
+                              if (BlocProvider.of<ForgetPasswordCubit>(context)
+                                  .sendCodeKey
+                                  .currentState!
+                                  .validate()) {
+                                BlocProvider.of<ForgetPasswordCubit>(context)
+                                    .sendCode();
+                              }
+                            },
+                            text: AppStrings.sendResetLink.tr(context),
+                          ),
                   ],
                 ),
               );
