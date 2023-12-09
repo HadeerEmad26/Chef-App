@@ -8,6 +8,10 @@ import 'package:chef_app/core/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/database/api/end_points.dart';
+import '../../../../core/database/cache_helper/cache_helper.dart';
+import '../../../../core/services/service_locator.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -23,8 +27,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigateAfterThreeSeconds() {
-    Future.delayed(Duration(seconds: 3)).then((value) {
-      navigate(context: context, route: Routes.changeLang);
+    Future.delayed(Duration(seconds: 3)).then((value) async{
+      await sl<CacheHelper>().getData(
+        key: ApiKeys.token,
+      )==null?
+      navigate(context: context, route: Routes.changeLang):
+      navigate(context: context, route: Routes.home);
     });
   }
 
