@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../../../../core/database/api/end_points.dart';
 import '../../../../../core/services/service_locator.dart';
@@ -20,7 +21,7 @@ class LoginCubit extends Cubit<LoginState> {
   void changeLoginPasswordSuffixIcon() {
     isLoginPasswordShowing = !isLoginPasswordShowing;
     suffixIcon =
-    isLoginPasswordShowing ? Icons.visibility : Icons.visibility_off;
+        isLoginPasswordShowing ? Icons.visibility : Icons.visibility_off;
     emit(ChangeLoginPasswordSuffixIcon());
   }
 
@@ -33,14 +34,18 @@ class LoginCubit extends Cubit<LoginState> {
       password: passwordController.text,
     );
     result.fold(
-          (l) => emit(LoginErrorState(l)),
-          (r) async {
+      (l) => emit(LoginErrorState(l)),
+      (r) async {
         loginModel = r;
-        // Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
-        // await sl<CacheHelper>().saveData(
-        //     key: ApiKeys.id,
-        //     value: decodedToken[ApiKeys
-        //         .id]); // {id: 6498d8d963385b3f9a0bcf3c, email: anas423999@gmail.com, name: Anas, iat: 1688680561}
+        Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
+        await sl<CacheHelper>()
+            .saveData(key: ApiKeys.id, value: decodedToken[ApiKeys.id]);
+        // {
+        //   "id": "65721a55170b9ecc33cca09b",
+        //   "email": "hadeere378@gmail.com",
+        //   "name": "hadeer",
+        //   "iat": 1702328960
+        // }
 
         await sl<CacheHelper>().saveData(
           key: ApiKeys.token,

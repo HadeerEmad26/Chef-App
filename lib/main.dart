@@ -3,6 +3,7 @@ import 'package:chef_app/core/database/cache_helper/cache_helper.dart';
 import 'package:chef_app/features/auth/presentation/auth_cubit/login_cubit.dart';
 import 'package:chef_app/features/auth/presentation/forget_password_cubit/forget_password_cubit.dart';
 import 'package:chef_app/features/home/cubit/home_cubit.dart';
+import 'package:chef_app/features/menu/presentation/cubit/menu_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,6 +31,11 @@ import 'core/services/service_locator.dart';
         BlocProvider(
           create: (context) => sl<HomeCubit>(),
         ),
+
+        BlocProvider(
+          create: (context) => sl<MenuCubit>(),
+        ),
+
       ],
       child: const MyApp(),
     ),

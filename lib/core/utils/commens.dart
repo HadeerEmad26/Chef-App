@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'app_color.dart';
 
@@ -56,4 +58,24 @@ Color getState(ToastStates state) {
       return AppColors.primary;
   }
 }
+
+
+
+
+Future<XFile?> pickImage(ImageSource source) async{
+  XFile? image = await ImagePicker().pickImage(source: source);
+  if(image!=null){
+    return image;
+  }else{
+    return null;
+  }
+}
+
+
+
+Future uploadImageToApi(XFile image) async{
+ return MultipartFile.fromFileSync(image.path,filename: image.path.split('/').last);
+}
+
+
 

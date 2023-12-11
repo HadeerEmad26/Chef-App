@@ -49,6 +49,8 @@ dependencies:
   google_nav_bar: ^5.0.6
   cached_network_image: ^3.3.0
   shimmer: ^3.0.0
+  image_picker: ^1.0.4
+  jwt_decoder: ^2.0.1
 
 dev_dependencies:
   flutter_test:

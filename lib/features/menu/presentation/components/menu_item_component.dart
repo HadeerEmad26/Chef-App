@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chef_app/core/local/app_localization.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +43,7 @@ class MenuItemComponent extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return CustomAlertDialog(
-                    message: 'Delete Meal',
+                    message: AppStrings.deleteMeal.tr(context),
                     confirmAction: () {},
                   );
                 });
