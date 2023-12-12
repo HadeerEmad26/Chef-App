@@ -21,7 +21,9 @@ class MenuRepository{
 }
       ) async{
     try{
-      final response = await sl<ApiConsumer>().post(EndPoint.addMeal, data: {
+      final response = await sl<ApiConsumer>().post(EndPoint.addMeal,
+          isFormData: true,
+          data: {
         //!!meal image
         ApiKeys.mealImages: await uploadImageToApi(image),
         //!!meal name

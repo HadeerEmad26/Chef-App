@@ -41,7 +41,7 @@ class CustomAlertDialog extends StatelessWidget {
 
         //!!confirm
         TextButton(
-          onPressed: () {},
+          onPressed: confirmAction,
           child: Text(
             AppStrings.ok.tr(context),
             style: Theme.of(context)

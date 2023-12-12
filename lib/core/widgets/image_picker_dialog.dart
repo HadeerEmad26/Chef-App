@@ -15,7 +15,7 @@ class ImagePickerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: AppColors.black12,
+      backgroundColor: AppColors.black,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),

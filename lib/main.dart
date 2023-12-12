@@ -33,7 +33,7 @@ import 'core/services/service_locator.dart';
         ),
 
         BlocProvider(
-          create: (context) => sl<MenuCubit>(),
+          create: (context) => sl<MenuCubit>()..getAllMeals(),
         ),
 
       ],

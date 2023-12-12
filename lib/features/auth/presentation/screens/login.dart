@@ -115,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 32.h),
                           state is LoginLoadingState
-                              ? const CusotmLoadingIndicator()
+                              ? const CustomLoadingIndicator()
                               : CustomButton(
                             onPressed: () {
                               if (BlocProvider.of<LoginCubit>(context)

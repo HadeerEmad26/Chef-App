@@ -2,13 +2,13 @@ import 'package:chef_app/core/local/app_localization.dart';
 import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_color.dart';
 import 'package:chef_app/core/utils/commens.dart';
+import 'package:chef_app/features/menu/presentation/cubit/menu_cubit.dart';
+import 'package:chef_app/features/menu/presentation/cubit/menu_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_button.dart';
-import '../../../auth/presentation/auth_cubit/login_cubit.dart';
+import '../../../../core/widgets/custom_loading_indicator.dart';
 import '../components/menu_item_component.dart';
 
 class MenuHomeScreen extends StatelessWidget {
@@ -30,14 +30,32 @@ class MenuHomeScreen extends StatelessWidget {
                 text: AppStrings.addDishToMenu.tr(context),
               ),
               //list of item
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: MenuItemComponent(),
-                  ),
-                ),
+              BlocBuilder<MenuCubit, MenuState>(
+                builder: (context, state) {
+                  final menuCubit = BlocProvider.of<MenuCubit>(context);
+                  return Expanded(
+                    child: state is GetAllChefMealLoadingState
+                        ? CustomLoadingIndicator()
+                        : menuCubit.meals.isEmpty
+                            ? Center(
+                                child: Text(
+                                  AppStrings.noMealsAdded.tr(context),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displayMedium!
+                                      .copyWith(color: AppColors.primary),
+                                ),
+                              )
+                            : ListView.builder(
+                                itemCount: menuCubit.meals.length,
+                                itemBuilder: (context, index) => Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: MenuItemComponent(
+                                      mealModel: menuCubit.meals[index]),
+                                ),
+                              ),
+                  );
+                },
               )
             ],
           ),

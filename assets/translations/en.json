@@ -64,6 +64,7 @@
   "camera": "Camera",
   "gallery": "Gallery",
   "deleteMeal": "Delete Meal",
-  "category": "Category"
+  "category": "Category",
+  "noMealsAdded": "No Meals Added"
 
 }

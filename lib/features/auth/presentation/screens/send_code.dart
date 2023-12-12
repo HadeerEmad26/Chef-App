@@ -70,7 +70,7 @@ class SendCodeScreen extends StatelessWidget {
                       height: 26.h,
                     ),
                     state is SendCodeLoading
-                        ? CusotmLoadingIndicator()
+                        ? CustomLoadingIndicator()
                         : CustomButton(
                             onPressed: () {
                               if (BlocProvider.of<ForgetPasswordCubit>(context)

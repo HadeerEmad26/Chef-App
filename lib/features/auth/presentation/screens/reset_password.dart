@@ -142,7 +142,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         height: 26.h,
                       ),
                       state is ResetPasswordLoadingState
-                          ? CusotmLoadingIndicator()
+                          ? CustomLoadingIndicator()
                           : CustomButton(
                               onPressed: () {
                                 if (BlocProvider.of<ForgetPasswordCubit>(
