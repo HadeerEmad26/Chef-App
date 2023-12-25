@@ -10,7 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/widgets/custom_alert_dialog.dart';
 import '../../../../core/widgets/custom_cached_network_image.dart';
-import '../../../../core/widgets/custom_loading_indicator.dart';
 
 class MenuItemComponent extends StatelessWidget {
   const MenuItemComponent({
@@ -37,7 +36,9 @@ class MenuItemComponent extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(mealModel.name),
+            Text(mealModel.name,style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                fontSize: 15
+            ),),
             // SizedBox(
             //   width: 180.w,
             //     child: Text(mealModel.description,
@@ -48,17 +49,23 @@ class MenuItemComponent extends StatelessWidget {
             constraints: BoxConstraints(
               maxWidth: 165.w
             ),
-              child: Text(mealModel.description,
+              child: Text(mealModel.description,style: Theme.of(context).textTheme.bodySmall!.copyWith(
+    fontSize: 15
+    ),
                 overflow: TextOverflow.ellipsis,
               ),
                 ),
 
 
-            Text(mealModel.price.toString()+AppStrings.le.tr(context)),
-            Text(mealModel.category),
+            Text(mealModel.price.toString()+AppStrings.le.tr(context),style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                fontSize: 15
+            ),),
+            Text(mealModel.category,style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                fontSize: 15
+            ),),
           ],
         ),
-        Spacer(),
+        const Spacer(),
         BlocConsumer<MenuCubit, MenuState>(
           builder: (context, state) {
             return IconButton(
@@ -76,7 +83,7 @@ class MenuItemComponent extends StatelessWidget {
                       );
                     });
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.cancel,
                 color: AppColors.red,
                 size: 40,

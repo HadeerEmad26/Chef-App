@@ -8,6 +8,10 @@ import 'package:chef_app/features/auth/presentation/forget_password_cubit/forget
 import 'package:chef_app/features/home/cubit/home_cubit.dart';
 import 'package:chef_app/features/menu/data/reposetry/menu_repositry.dart';
 import 'package:chef_app/features/menu/presentation/cubit/menu_cubit.dart';
+import 'package:chef_app/features/profile/data/reposetry/profile_repository.dart';
+import 'package:chef_app/features/profile/presentation/cubit/change_password/change_password_cubit.dart';
+import 'package:chef_app/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:chef_app/providers/app_providers.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -20,11 +24,16 @@ void initServiceLoactor(){
   sl.registerLazySingleton(()=> ForgetPasswordCubit(sl()));
   sl.registerLazySingleton(()=> HomeCubit());
   sl.registerLazySingleton(()=> MenuCubit(sl()));
+  sl.registerLazySingleton(()=> ProfileCubit(sl()));
+  sl.registerLazySingleton(()=> ChangePasswordCubit(sl()));
+  sl.registerLazySingleton(()=> AppProviders());
 
 
   //auth feature
   sl.registerLazySingleton(() => AuthRepository());
   sl.registerLazySingleton(() => MenuRepository());
+  sl.registerLazySingleton(() => ProfileRepository());
+
 
   //external
   sl.registerLazySingleton(()=> CacheHelper());

@@ -24,7 +24,7 @@ class ChangeLanguageScreen extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             //backgroundImage
-            CustomImage(
+            const CustomImage(
               imagePath: AppAssets.background,
               width: double.infinity,
             ),

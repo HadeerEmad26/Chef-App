@@ -20,6 +20,7 @@ class CustomGNavWidget extends StatelessWidget {
       padding:  EdgeInsets.symmetric(horizontal: 24.h,vertical: 16.h),
       child: GNav(
         activeColor: AppColors.primary,
+        color: AppColors.primary,
         selectedIndex: currentIndex,
         onTabChange: onTabChanged,
         tabBackgroundColor: AppColors.black12,

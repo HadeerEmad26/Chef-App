@@ -31,45 +31,45 @@ class AppRoutes {
   static MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case  Routes.intitlRoutes:
-        return MaterialPageRoute(builder: (_) => SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
 
       case Routes.changeLang:
-        return MaterialPageRoute(builder: (_) => ChangeLanguageScreen());
+        return MaterialPageRoute(builder: (_) => const ChangeLanguageScreen());
 
       case Routes.login:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
 
       case Routes.sendCode:
-        return MaterialPageRoute(builder: (_) => SendCodeScreen());
+        return MaterialPageRoute(builder: (_) => const SendCodeScreen());
 
       case Routes.resetPassword:
-        return MaterialPageRoute(builder: (_) => ResetPasswordScreen());
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
 
       case Routes.menuHome:
-        return MaterialPageRoute(builder: (_) => MenuHomeScreen());
+        return MaterialPageRoute(builder: (_) => const MenuHomeScreen());
 
       case Routes.addMeal:
-        return MaterialPageRoute(builder: (_) => AddMealScreen());
+        return MaterialPageRoute(builder: (_) => const AddMealScreen());
 
       case Routes.profileHome:
-        return MaterialPageRoute(builder: (_) => ProfileScreen());
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
 
       case Routes.updateProfile:
-        return MaterialPageRoute(builder: (_) => UpdateProfileScreen());
+        return MaterialPageRoute(builder: (_) => const UpdateProfileScreen());
 
       case Routes.settings:
-        return MaterialPageRoute(builder: (_) => SettingsScreen());
+        return MaterialPageRoute(builder: (_) =>  SettingsScreen());
 
       case Routes.changePassword:
-        return MaterialPageRoute(builder: (_) => ChangePasswordScreen());
+        return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
 
       case Routes.home:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
 
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
+          builder: (_) => const Scaffold(
             body: Center(child: Text("No Found Route")),
           ),
         );

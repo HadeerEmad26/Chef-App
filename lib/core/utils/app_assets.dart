@@ -5,4 +5,6 @@ class AppAssets{
   static const String imagePacker='${basePath}image_packer.png';
   static const String background='${basePath}background.png';
   static const String backgroundTwo='${basePath}background_image 2.png';
+  static const String profile='${basePath}profile.jpeg';
+
 }

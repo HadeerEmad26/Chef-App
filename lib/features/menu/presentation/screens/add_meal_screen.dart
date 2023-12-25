@@ -1,10 +1,8 @@
 import 'package:chef_app/core/local/app_localization.dart';
-import 'package:chef_app/core/utils/app_assets.dart';
 import 'package:chef_app/core/utils/app_color.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/commens.dart';
 import 'package:chef_app/core/widgets/custom_file_image.dart';
-import 'package:chef_app/core/widgets/custom_image.dart';
 import 'package:chef_app/core/widgets/custom_loading_indicator.dart';
 import 'package:chef_app/features/menu/presentation/cubit/menu_cubit.dart';
 import 'package:chef_app/features/menu/presentation/cubit/menu_state.dart';
@@ -29,7 +27,7 @@ class AddMealScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24.0),
         child: SingleChildScrollView(
           child: Center(
             child: BlocConsumer<MenuCubit, MenuState>(
@@ -79,8 +77,9 @@ class AddMealScreen extends StatelessWidget {
                                   },
                                 );
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.add,
+                                color: AppColors.red,
                                 size: 35,
                               ),
                             ),
@@ -103,6 +102,7 @@ class AddMealScreen extends StatelessWidget {
                       //!! price text field
                       SizedBox(height: 16.h),
                       CustomTextFormField(
+                        keyboardType: TextInputType.number,
                         controller: menuCubit.mealPriceController,
                         hint: AppStrings.mealPrice.tr(context),
                         validate: (data) {
@@ -139,6 +139,7 @@ class AddMealScreen extends StatelessWidget {
                       Container(
                         height: 75.h,
                         width: double.infinity,
+                        color: AppColors.white,
                         child: DropdownButton(
                           isExpanded: true,
                           value: menuCubit.selectedItem,
@@ -146,8 +147,8 @@ class AddMealScreen extends StatelessWidget {
                           items: menuCubit.categoryList
                               .map(
                                 (e) => DropdownMenuItem(
-                                  child: Text(e),
                                   value: e,
+                                  child: Text(e),
                                 ),
                               )
                               .toList(),
@@ -170,10 +171,12 @@ class AddMealScreen extends StatelessWidget {
                                   menuCubit.changeGroupValue(value);
                                 },
                               ),
-                              Text(AppStrings.mealQuantity.tr(context)),
+                              Text(AppStrings.mealQuantity.tr(context),style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                fontSize: 15
+                              ),),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           //!! number
                           Row(
                             children: [
@@ -185,7 +188,9 @@ class AddMealScreen extends StatelessWidget {
                                   menuCubit.changeGroupValue(value);
                                 },
                               ),
-                              Text(AppStrings.mealNumber.tr(context)),
+                              Text(AppStrings.mealNumber.tr(context),style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                  fontSize: 15
+                              ),),
                             ],
                           ),
                         ],
@@ -194,7 +199,7 @@ class AddMealScreen extends StatelessWidget {
                       //add to menu button
                       SizedBox(height: 16.h),
                       state is AddDishToMenuLoadingState
-                          ? CustomLoadingIndicator()
+                          ? const CustomLoadingIndicator()
                           : CustomButton(
                               onPressed: () {
                                 if (menuCubit.addToMenuKey.currentState!

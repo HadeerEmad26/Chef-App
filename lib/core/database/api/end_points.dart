@@ -34,7 +34,9 @@ class ApiKeys {
   static const String id = 'id';
   static const String email = 'email';
   static const String password = 'password';
+  static const String oldPass = 'oldPass';
   static const String confirmPassword = 'confirmPassword';
+  static const String newPass = 'newPass';
   static const String code = 'code';
   static const String message = 'message';
   static const String token = 'token';
@@ -44,4 +46,10 @@ class ApiKeys {
   static const String category = 'category';
   static const String mealImages = 'mealImages';
   static const String howToSell = 'howToSell';
+  static const String phone = 'phone';
+  static const String brandName = 'brandName';
+  static const String minimumCharge = 'minCharge';
+  static const String location = 'location';
+  static const String profilePic = 'profilePic';
+
 }

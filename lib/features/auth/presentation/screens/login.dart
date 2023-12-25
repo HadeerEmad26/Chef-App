@@ -4,7 +4,6 @@ import 'package:chef_app/core/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -28,15 +27,16 @@ class LoginScreen extends StatelessWidget {
               Stack(
                 alignment: AlignmentDirectional.center,
                 children: [
-                  CustomImage(
+                  const CustomImage(
                     imagePath: AppAssets.backgroundTwo,
                     width: double.infinity,
                   ),
                   Center(
-                      child: Text(
-                        AppStrings.welcomeBack.tr(context),
-                        style: Theme.of(context).textTheme.displayLarge,
-                      ),),
+                    child: Text(
+                      AppStrings.welcomeBack.tr(context),
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(
@@ -85,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                             isPassword: BlocProvider.of<LoginCubit>(context)
                                 .isLoginPasswordShowing,
                             icon:
-                            BlocProvider.of<LoginCubit>(context).suffixIcon,
+                                BlocProvider.of<LoginCubit>(context).suffixIcon,
                             suffixIconOnPressed: () {
                               BlocProvider.of<LoginCubit>(context)
                                   .changeLoginPasswordSuffixIcon();
@@ -103,7 +103,7 @@ class LoginScreen extends StatelessWidget {
                             children: [
                               TextButton(
                                 onPressed: () {
-                                 // navigate(context: context, route: Routes.sendCode);
+                                  // navigate(context: context, route: Routes.sendCode);
                                   navigateReplacement(
                                       context: context, route: Routes.sendCode);
                                 },
@@ -117,17 +117,17 @@ class LoginScreen extends StatelessWidget {
                           state is LoginLoadingState
                               ? const CustomLoadingIndicator()
                               : CustomButton(
-                            onPressed: () {
-                              if (BlocProvider.of<LoginCubit>(context)
-                                  .loginKey
-                                  .currentState!
-                                  .validate()) {
-                                BlocProvider.of<LoginCubit>(context)
-                                    .login();
-                              }
-                            },
-                            text: AppStrings.signIn.tr(context),
-                          ),
+                                  onPressed: () {
+                                    if (BlocProvider.of<LoginCubit>(context)
+                                        .loginKey
+                                        .currentState!
+                                        .validate()) {
+                                      BlocProvider.of<LoginCubit>(context)
+                                          .login();
+                                    }
+                                  },
+                                  text: AppStrings.signIn.tr(context),
+                                ),
                         ],
                       ),
                     );

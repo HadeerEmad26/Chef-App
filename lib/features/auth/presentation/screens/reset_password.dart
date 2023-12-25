@@ -2,7 +2,6 @@ import 'package:chef_app/core/local/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -23,7 +22,7 @@ class ResetPasswordScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(onPressed: (){
           navigateReplacement(context: context, route: Routes.sendCode);
-        }, icon: Icon(Icons.arrow_back)),
+        }, icon: const Icon(Icons.arrow_back)),
         title: Text(
           AppStrings.createYourNewPassword.tr(context),
         ),
@@ -49,7 +48,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(top: 40.h, bottom: 24.h),
-                        child: CustomImage(imagePath: AppAssets.lock),
+                        child: const CustomImage(imagePath: AppAssets.lock),
                       ),
                       Text(
                         AppStrings.createYourNewPassword.tr(context),
@@ -142,7 +141,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         height: 26.h,
                       ),
                       state is ResetPasswordLoadingState
-                          ? CustomLoadingIndicator()
+                          ? const CustomLoadingIndicator()
                           : CustomButton(
                               onPressed: () {
                                 if (BlocProvider.of<ForgetPasswordCubit>(

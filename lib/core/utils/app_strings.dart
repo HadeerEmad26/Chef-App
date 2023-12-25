@@ -39,6 +39,7 @@ class AppStrings{
   static const String pleaseEnterValidCode = 'pleaseEnterValidCode';
   static const String passwordChangedSucessfully = 'PasswordChangedSucessfully';
   static const String pleaseEnterValidNumber = 'pleaseEnterValidNumber';
+  static const String update = 'update';
 
 
   //! home-order-menu
@@ -62,6 +63,9 @@ class AppStrings{
   static const String deleteMeal = 'deleteMeal';
   static const String noMealsAdded = 'noMealsAdded';
 
+  static const String brandName = 'brandName';
+  static const String minimumCharge = 'minimumCharge';
+  static const String location = 'location';
 
 
   //!setting
@@ -72,6 +76,7 @@ class AppStrings{
   static const String settings = 'settings';
   static const String logout = 'logout';
   static const String logoutSucessfully = 'logoutSucessfully';
+  static const String profileEditedSuccessfully = 'profileEditedSuccessfully';
   static const String changePassword = 'changePassword';
   static const String ok = 'ok';
   static const String cancel = 'cancel';

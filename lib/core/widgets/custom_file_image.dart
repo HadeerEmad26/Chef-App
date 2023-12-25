@@ -21,6 +21,6 @@ class CustomFileImage extends StatelessWidget {
               File(image!.path),
                ),
         )
-        : CustomImage(imagePath: AppAssets.imagePacker);
+        : const CustomImage(imagePath: AppAssets.imagePacker);
   }
 }

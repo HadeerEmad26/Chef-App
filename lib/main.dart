@@ -4,8 +4,12 @@ import 'package:chef_app/features/auth/presentation/auth_cubit/login_cubit.dart'
 import 'package:chef_app/features/auth/presentation/forget_password_cubit/forget_password_cubit.dart';
 import 'package:chef_app/features/home/cubit/home_cubit.dart';
 import 'package:chef_app/features/menu/presentation/cubit/menu_cubit.dart';
+import 'package:chef_app/features/profile/presentation/cubit/change_password/change_password_cubit.dart';
+import 'package:chef_app/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:chef_app/providers/app_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 import 'app/app.dart';
 import 'core/services/service_locator.dart';
@@ -35,6 +39,16 @@ import 'core/services/service_locator.dart';
         BlocProvider(
           create: (context) => sl<MenuCubit>()..getAllMeals(),
         ),
+
+        BlocProvider(
+          create: (context) => sl<ProfileCubit>(),
+        ),
+
+        BlocProvider(
+          create: (context) => sl<ChangePasswordCubit>(),
+        ),
+
+        ChangeNotifierProvider(create: (_) =>AppProviders() ,)
 
       ],
       child: const MyApp(),

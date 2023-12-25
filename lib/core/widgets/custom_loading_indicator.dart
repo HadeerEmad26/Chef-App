@@ -8,6 +8,6 @@ class CustomLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SpinKitFadingCircle(color: AppColors.primary,);
+    return const SpinKitFadingCircle(color: AppColors.primary,);
   }
 }

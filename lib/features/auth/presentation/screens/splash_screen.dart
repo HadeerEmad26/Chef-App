@@ -21,13 +21,14 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+
   void initState() {
     navigateAfterThreeSeconds();
     super.initState();
   }
 
   void navigateAfterThreeSeconds() {
-    Future.delayed(Duration(seconds: 3)).then((value) async{
+    Future.delayed(const Duration(seconds: 3)).then((value) async{
       await sl<CacheHelper>().getData(
         key: ApiKeys.token,
       )==null?

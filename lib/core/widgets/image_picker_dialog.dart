@@ -24,7 +24,7 @@ class ImagePickerDialog extends StatelessWidget {
         children: [
           //!! Camera
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.camera_alt,
               color: AppColors.primary,
             ),
@@ -40,7 +40,7 @@ class ImagePickerDialog extends StatelessWidget {
           ),
           //!!gallery
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.photo,
               color: AppColors.primary,
             ),

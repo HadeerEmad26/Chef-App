@@ -19,7 +19,7 @@ class MenuHomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Column(
             children: [
               //add to menu button
@@ -35,7 +35,7 @@ class MenuHomeScreen extends StatelessWidget {
                   final menuCubit = BlocProvider.of<MenuCubit>(context);
                   return Expanded(
                     child: state is GetAllChefMealLoadingState
-                        ? CustomLoadingIndicator()
+                        ? const CustomLoadingIndicator()
                         : menuCubit.meals.isEmpty
                             ? Center(
                                 child: Text(

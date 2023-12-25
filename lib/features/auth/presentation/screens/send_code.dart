@@ -23,7 +23,7 @@ class SendCodeScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(onPressed: (){
           navigateReplacement(context: context, route: Routes.login);
-        }, icon: Icon(Icons.arrow_back),),
+        }, icon: const Icon(Icons.arrow_back),),
         title: Text(
           AppStrings.forgetPassword.tr(context),
         ),
@@ -47,7 +47,7 @@ class SendCodeScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(top: 40.h, bottom: 24.h),
-                      child: CustomImage(imagePath: AppAssets.lock),
+                      child: const CustomImage(imagePath: AppAssets.lock),
                     ),
                     Text(
                       AppStrings.sendResetLinkInfo.tr(context),
@@ -70,7 +70,7 @@ class SendCodeScreen extends StatelessWidget {
                       height: 26.h,
                     ),
                     state is SendCodeLoading
-                        ? CustomLoadingIndicator()
+                        ? const CustomLoadingIndicator()
                         : CustomButton(
                             onPressed: () {
                               if (BlocProvider.of<ForgetPasswordCubit>(context)
